@@ -18,6 +18,7 @@
   "homepage": "https://github.com/wangjue666/js-ML#readme",
   "dependencies": {
     "@tensorflow/tfjs": "^2.7.0",
-    "@tensorflow/tfjs-node": "^2.7.0"
+    "@tensorflow/tfjs-node": "^2.7.0",
+    "@tensorflow/tfjs-vis": "^1.4.3"
   }
 }
