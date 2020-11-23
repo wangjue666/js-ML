@@ -22,4 +22,9 @@ window.onload = async ()=>{
         epochs: 100,
         callbacks: tfvis.show.fitCallbacks({name: '训练过程',}, ['loss'])
     })
+
+
+    const output = model.predict(tf.tensor([5]))
+    output.print()
+    console.log(output.dataSync())
 }
