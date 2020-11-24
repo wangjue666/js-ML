@@ -12,5 +12,12 @@ window.onload = async () => {
                 data.filter(p => p.label === 0),
             ]
         }
-    );
+    )
+
+    const model = tf.sequential()
+    model.add(tf.layers.dense({
+        units: 1,
+        inputShape: [2],
+        activation: 'sigmoid'
+    }))
 }
