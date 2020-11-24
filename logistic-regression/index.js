@@ -20,4 +20,19 @@ window.onload = async () => {
         inputShape: [2],
         activation: 'sigmoid'
     }))
+    model.compile({
+        loss: tf.losses.logLoss,
+        optimizer: tf.train.adam(0.1)
+    });
+    const inputs = tf.tensor(data.map(p => [p.x, p.y]))
+    const labels = tf.tensor(data.map(p => p.label))
+
+    await model.fit(inputs, labels, {
+        batchSize: 40,
+        epochs: 50,
+        callbacks: tfvis.show.fitCallbacks(
+            { name: '训练效果' },
+            ['loss']
+        )
+    })
 }
