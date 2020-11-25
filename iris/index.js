@@ -13,4 +13,20 @@ window.onload = async ()=>{
         units: 3,
         activation: 'softmax'
     }))
+
+    model.compile({
+        loss: 'categoricalCrossentropy',  //交叉熵损失函数
+        optimizer: tf.train.adam(0.1),
+        metrics: ['accuracy']
+    })
+
+    await model.fit(xTrain, yTrain, {
+        epochs: 100,
+        validationData: [xTest, yTest],
+        callbacks: tfvis.show.fitCallbacks(
+            {name: '训练效果'},
+            ['loss','val_loss', 'acc', 'val_acc'],
+            {callbacks: ['onEpochEnd']}
+        )
+    })
 }
