@@ -23,4 +23,26 @@ window.onload = async ()=>{
         units: 1,
         activation: 'sigmoid'
     }))
+    model.compile({
+        loss: tf.losses.logLoss,
+        optimizer: tf.train.adam(0.1)
+    })
+
+    const inputs = tf.tensor(data.map(p=>[p.x, p.y]))
+    const labels = tf.tensor(data.map(p=>p.label))
+
+    await model.fit(inputs, labels, {
+        epochs: 10,
+        callbacks: tfvis.show.fitCallbacks(
+            { name: '训练效果' },
+            ['loss']
+        )
+    })
+
+
+    window.predict = async (form) => {
+        const pred = await model.predict(tf.tensor([[form.x.value * 1, form.y.value * 1]]));
+        alert(`预测结果：${pred.dataSync()[0]}`);
+    };
+
 }
