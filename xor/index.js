@@ -12,4 +12,15 @@ window.onload = async ()=>{
             ]
         }
     )
+
+    const model = tf.sequential()
+    model.add(tf.layers.dense({
+        units: 4,
+        inputShape: [2],
+        activation: 'relu'
+    }))
+    model.add(tf.layers.dense({
+        units: 1,
+        activation: 'sigmoid'
+    }))
 }
