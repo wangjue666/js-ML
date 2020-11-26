@@ -1,10 +1,9 @@
 import * as tf from '@tensorflow/tfjs'
-import { models } from '@tensorflow/tfjs'
-import {getData} from "../xor/data"
+import {getData} from "./data"
 
 
 window.onload = async ()=>{
-    const data = getData(200)
+    const data = getData(200, 3)
 
     tfvis.render.scatterplot(
         {name: '训练数据'},
@@ -18,9 +17,13 @@ window.onload = async ()=>{
 
     const model = tf.sequential()
     model.add(tf.layers.dense({
+        units: 10,
+        activation: 'tanh',
+        inputShape: [2]
+    }))
+    model.add(tf.layers.dense({
         units: 1,
         activation: 'sigmoid',
-        inputShape: [2]
     }))
     model.compile({
         loss: tf.losses.logLoss,
