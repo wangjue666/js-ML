@@ -20,8 +20,10 @@ window.onload = async ()=>{
         units: 10,
         activation: 'tanh',
         inputShape: [2],
-        kernelRegularizer: tf.regularizers.l2({l2: 1})
+        //kernelRegularizer: tf.regularizers.l2({l2: 1})
     }))
+    model.add(tf.layers.dropout({rate: 0.9}))
+
     model.add(tf.layers.dense({
         units: 1,
         activation: 'sigmoid',
