@@ -15,7 +15,7 @@ export const getInputs = async () => {
     const labels = [];
     for (let i = 0; i < 30; i += 1) {
         ['android', 'apple', 'windows'].forEach(label => {
-            const src = `http://127.0.0.1:5000/train/${label}-${i}.jpg`;
+            const src = `http://127.0.0.1:5000/brand/train/${label}-${i}.jpg`;
             const img = loadImg(src);
             loadImgs.push(img);
             labels.push([
